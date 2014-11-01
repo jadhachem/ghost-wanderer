@@ -1,0 +1,101 @@
+Ghost Wanderer v0.0.3
+by Jad Hachem
+
+
+PRELIMINARIES
+-------------
+
+Before you read this manual, make sure you have installed and can run the program.
+Installation instructions and requirements can be found in the README file.
+
+
+GOAL OF THE GAME
+----------------
+
+You control a ghost that wanders around in a small, rectangular area.
+There will constantly be other ghosts entering the area, and your ghost has to avoid them.
+The goal of the game is to last as long as possible before hitting a hostile ghost.
+
+
+TYPES OF GHOSTS
+---------------
+
+As of v0.0.3, there are three types of ghosts.
+Each type is identifiable by its color.
+The most important property of each non-player ghost is its "Bump Event",
+which denotes what happens when it bumps into the player's ghost.
+
+* Player ghost
+	- Color: White
+	- Controlled by the player
+	- Bounces at the edges of the area
+
+* Regular hostile ghost
+	- Color: Magenta
+	- Bump Event: Game ends
+	- Once it enters the area, it wanders around at a fixed speed.
+	  When it reaches the edge of the area, it bounces back.
+
+* Jack ghost
+	- Color: Cyan
+	- Bump Event: All non-player ghosts are immediately removed from the area
+	- When this ghost enters the area, it goes in a straight line
+	  until it exits out one of the edges.
+
+* Berserk ghost
+	- Color: Rapid alternation between Yellow and Blue
+	- Bump Event: Game ends
+	- Once this ghost enters, it follows the player ghost for a fixed amount
+	  of time, after which it abandons the chase and leaves the area
+
+The Berserk ghost is still an experimental feature.
+
+
+MOVEMENT
+--------
+
+The player ghost is controlled using the arrow keys.
+At the start of the game, the ghost has a randomly-chosen velocity.
+Each press of an arrow key increments the velocity in the corresponding direction by a fixed amount (possibly reversing the direction).
+Note that the game is designed such that the ghost never reaches a full stop.
+
+
+HOW THE GAME WORKS
+------------------
+
+The game starts with the player ghost alone in a rectangular area.
+After 5 seconds, the first wave begins.
+Each wave starts with 10 hostile ghosts entering the arena randomly.
+For every 5 seconds after that, a new ghost enters the area.
+This ghost will likely be another hostile ghost,
+but it can be one of the other "special" ghosts, with some small probability.
+The game ends when the player ghost hits a hostile ghost.
+
+Once a hostile ghost enters the area, it will never leave it by any normal means.
+This means that, over time, the area becomes crowded with hostile ghosts, which the player has to keep avoiding.
+However, when a Jack ghost is caught, all non-player ghosts in the area are immediately cleared.
+This buys the player some time.
+
+But catching a Jack ghost also has its downsides!
+First, the average speed of all the future non-player ghosts increases, making avoiding them even harder!
+Second, the probability of a Jack ghost entering the area decreases to 75% of its previous value.
+But don't worry!
+It will increase again as more and more ghosts enter the area.
+
+Once a Jack ghost is caught, a new wave begins.
+Each wave is harder than the previous!
+
+
+CUSTOMIZING THE GAME
+--------------------
+
+This program is still in its early stages.
+As a result, it does not have any friendly interface with which the user can customize their game.
+This is still possible though, by modifying the values of certain variables in the source code.
+
+These variables are located in the file:
+	src/ghost_factory.cpp
+inside the anonymous namespace near the top of the code.
+The code must be recompiled when these parameters are modified in order to incorporate the changes into the game.
+
+

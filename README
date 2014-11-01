@@ -1,0 +1,65 @@
+Ghost Wanderer v0.0.3
+by Jad Hachem
+
+How long can your ghost wander among hostile ghosts?
+
+
+INTRODUCTION
+------------
+
+Ghost Wanderer is a game I wrote for fun and to practice my coding skills.
+The player controls a ghost that wanders around in a rectangular area
+and tries to avoid bumping into other wandering ghosts.
+
+
+REQUIREMENTS
+------------
+
+- gcc >= 4.7
+- SFML >= 2.0
+- Linux or Mac OS X
+
+
+INSTALLATION & RUNNING
+----------------------
+
+To install the program, you simply need to compile it by running:
+	$ make
+in the root directory of the project.
+
+To run the program, simply run the executable:
+	$ ./ghost-wanderer
+from the root directory of the project (after compiling).
+
+
+INSTRUCTIONS
+------------
+
+You can find instructions on how to play the game
+in the MANUAL text file that came with this program.
+
+
+LICENSE
+-------
+
+Ghost Wanderer is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Ghost Wanderer is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+
+CONTACT
+-------
+
+You can contact me by email at jad.hachem@gmail.com
+
+
+

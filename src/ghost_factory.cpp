@@ -24,21 +24,36 @@
 #include "berserk_ghost.hpp"
 #include "ghost_factory.hpp"
 
+/**
+ *	This anonymous namespace contains the parameters that allow customization
+ *	of the game. Remember to recompile the program after modifying these values.
+ */
 namespace {
+	// Initial probability of a Jack ghost
 	double p_jack_0 = 0.125;
+	// Factor by which P(jack) decreases when a Jack is caught
 	double p_jack_decrease = 0.75;
+	// Factor by which P(jack) increases when a new ghost is generated
 	double p_jack_increase = 1.01;
 
+	// Probability of a Berserk ghost
 	double p_berserk = 0.025;
+	// Time (in ms) until a Berserk ghost abandons the chase of the player ghost
 	int berserk_timeout = 6000;
+	// The minimum speed of the Berserk ghost
 	float min_berserk_speed = 2.5f;
 
+	// Initial factor multiplying the random speed of non-player ghosts
 	float speed_multiplier_0 = 1.0;
+	// Factory by which speed_multiplier increases when a Jack is caught
 	float speed_multiplier_inc = 0.5;
 
+	// Initial number of hostile ghosts at the start of a wave
 	int initial_number_0 = 10;
+	// Amount by which this number increases every time a Jack is caught
 	int initial_number_inc = 0;
 
+	// Time (ms) between generating two ghosts
 	int ghost_period_ms = 5000;
 }
 
