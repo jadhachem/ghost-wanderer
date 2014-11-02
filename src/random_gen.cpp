@@ -18,35 +18,24 @@
  */
 
 #include "random_gen.hpp"
-#include <cstdlib>
-#include <ctime>
-#include <cmath>
-#include <map>
 #include <random>
 #include <chrono>
 
 namespace rnd {
 
+namespace {
+	std::mt19937 mt;
+}
+
 void rand_init() {
-	std::srand( std::time( NULL ) );
+	mt.seed( std::chrono::high_resolution_clock::now()
+						.time_since_epoch().count()
+			);
 }
 
 double uniform() {
-	return (std::rand()+0.0) / RAND_MAX;
-}
-
-namespace {
-	std::pair<double,double> box_muller() {
-		double u = uniform();
-		double v = uniform();
-
-		double r  = std::sqrt( -2 * std::log(u) );
-		double th = 2 * M_PI * v;
-		double z1 = r * cos(th);
-		double z2 = r * sin(th);
-
-		return std::make_pair(z1,z2);
-	}
+	static std::uniform_real_distribution<double> unif(0.0,1.0);
+	return unif(mt);
 }
 
 int uniformDiscrete(int N) {
@@ -57,16 +46,8 @@ int uniformDiscrete(int a, int b) {
 }
 
 double normal() {
-	static bool generated = false;
-	static double next = 0.0;
-	
-	if(generated)
-		return next;
-	else {
-		std::pair<double,double> bm = box_muller();
-		next = bm.second;
-		return bm.first;
-	}
+	static std::normal_distribution<double> norm(0.0,1.0);
+	return norm(mt);
 }
 
 double normal(double mean, double stdev) {
@@ -74,8 +55,8 @@ double normal(double mean, double stdev) {
 }
 
 double chi_squared() {
-	std::pair<double,double> bm = box_muller();
-	return bm.first*bm.first+bm.second*bm.second;
+	double x = normal();
+	return x*x;
 }
 
 int poisson(double rate) {
