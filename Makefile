@@ -12,7 +12,9 @@ LD = -framework SFML -framework sfml-window -framework sfml-system -framework sf
 endif
 
 DEBUG ?= 0
-ifeq ($(DEBUG),1)
+ifeq ($(DEBUG),0)
+CFLAGS += -O2
+else
 CFLAGS += -g
 endif
 
