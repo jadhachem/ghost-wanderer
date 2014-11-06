@@ -19,9 +19,9 @@
 
 #include <iostream>
 
-int main() {
+int main(int argc, char **argv) {
 
-	std::cout << "Hello" << std::endl;
+//	std::cout << "Unit test " << argv[0] << " successful." << std::endl;
 
 	return 0;
 }
