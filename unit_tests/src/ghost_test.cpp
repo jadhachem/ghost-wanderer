@@ -44,8 +44,6 @@ int main(int argc, char **argv) {
 	test_move();
 	test_outside();
 
-	std::cout << "Unit test " << argv[0] << " successful." << std::endl;
-
 	return 0;
 }
 

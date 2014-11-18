@@ -21,8 +21,6 @@
 
 int main(int argc, char **argv) {
 
-//	std::cout << "Unit test " << argv[0] << " successful." << std::endl;
-
 	return 0;
 }
 

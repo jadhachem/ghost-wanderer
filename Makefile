@@ -44,6 +44,10 @@ EXECOBJ = wanderer.o
 UNTSRC = $(wildcard $(UNTD)/$(SRCD)/*_test.cpp)
 UNTOBJ = $(UNTSRC:$(UNTD)/$(SRCD)/%_test.cpp=$(UNTD)/$(OBJD)/%_test.o)
 UNTEXEC = $(UNTSRC:$(UNTD)/$(SRCD)/%_test.cpp=$(UNTD)/%_test)
+UNTRUN = $(UNTD)/run_tests.sh
+
+# Preventing make from deleting certain intermediate files
+.PRECIOUS: $(UNTOBJ)
 
 # header file dependencies
 # (later?)
@@ -70,6 +74,10 @@ $(UNTD)/$(OBJD)/%_test.o: $(UNTD)/$(SRCD)/%_test.cpp $(INC)
 	$(CC) $(CFLAGS) -c $< -o $@ -I$(INCD)/
 
 all: $(EXEC) $(UNTEXEC)
+
+test: $(UNTEXEC)
+	@chmod +x $(UNTRUN)
+	./$(UNTRUN) $(UNTEXEC)
 
 tar:
 	cd ../ && \
