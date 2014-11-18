@@ -18,9 +18,45 @@
  */
 
 #include <iostream>
+#include "ghost.hpp"
+#include "ghost_factory.hpp"
+#include "random_gen.hpp"
+#include <SFML/Graphics.hpp>
+
+#include <assert.h>
+
+void testGhostGeneration();
 
 int main(int argc, char **argv) {
 
+	rnd::rand_init();
+
+	testGhostGeneration();
+
 	return 0;
+}
+
+bool isOutside(Ghost *ghost, float nx, float ny) {
+	sf::Vector2f pos = ghost->getPosition();
+	return ( pos.x-25<0 || pos.x+25>=nx || pos.y-25<0 || pos.y+25>=ny );
+}
+
+void testGhostGeneration() {
+
+	GhostFactory factory;
+	factory.setArenaDimensions(100,100);
+	Ghost *ghost;
+
+	for(int i=0; i<10; i++) {
+		ghost = factory.createMainGhost();
+		assert( ! isOutside(ghost,100,100) );
+		delete ghost;
+	}
+	for(int i=0; i<10; i++) {
+		ghost = factory.createNewGhost();
+		assert( isOutside(ghost,100,100) );
+		delete ghost;
+	}
+
 }
 
