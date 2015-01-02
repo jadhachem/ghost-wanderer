@@ -26,10 +26,21 @@ INSTALLATION & RUNNING
 To install the program, you simply need to compile it by running:
 	$ make
 in the root directory of the project.
+This will create the executable in the root directory of the project.
 
 To run the program, simply run the executable:
 	$ ./ghost-wanderer
 from the root directory of the project (after compiling).
+
+
+FOR DEVELOPERS
+--------------
+
+All unit test source files should go into unit_tests/src/
+and the file names should end in _test.
+For example: unit_tests/src/ghost_test.cpp
+All unit tests can be compiled and executed using
+	$ make test
 
 
 INSTRUCTIONS
@@ -41,6 +52,10 @@ in the MANUAL text file that came with this program.
 
 LICENSE
 -------
+
+Copyright (C) 2014, 2015 Jad Hachem <jad.hachem@gmail.com>
+
+This README file documents the use of Ghost Wanderer.
 
 Ghost Wanderer is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
